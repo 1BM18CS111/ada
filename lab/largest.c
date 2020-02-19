@@ -1,72 +1,59 @@
-#include <stdio.h> 
-#include <time.h>  
-void swap(int *xp, int *yp) 
-{ 
-    int temp = *xp; 
-    *xp = *yp; 
-    *yp = temp; 
-} 
-  
-void selectionSort(int arr[], int n) 
-{ 
-    int i, j, max_idx; 
-  
-    
-    for (i = 0; i < n-1; i++) 
-    { 
+#include<stdio.h>
+#include<time.h>
 
-        max_idx = i; 
-        for (j = i+1; j < n; j++) 
-          if (arr[j] > arr[max_idx]) 
-            max_idx = j; 
-  
-       
-        swap(&arr[max_idx], &arr[i]); 
-    } 
-} 
-  
-
-void printArray(int arr[], int size) 
+void swap(int *x, int *y) 
 { 
-    int i; 
-    for (i=0; i < size; i++) 
-        printf("%d ", arr[i]); 
-    printf("\n"); 
+    int temp = *x; 
+    *x = *y; 
+    *y = temp; 
 } 
-  
 
-int sort() 
-{   int k;
-    int arr[] = {64, 25, 12, 22, 11}; 
-    int n = sizeof(arr)/sizeof(arr[0]); 
-    selectionSort(arr, n); 
-    printf("Entervalue of k");
+void modified_selection_sort()
+{
+	int arr[100],i,j,n,max,k;
+	printf("Enter no. of elements");
+	scanf("%d",&n);
+	printf("Enter k");
 	scanf("%d",&k);
-    printf("Largest k elements: \n"); 
-    printArray(arr, k); 
-   
-    return 0; 
-} 
-
-
-int main() 
-{ 
-    clock_t t; 
-    t = clock(); 
-    sort(); 
-    t = clock() - t; 
-    double time_taken = ((double)t)/CLOCKS_PER_SEC; 
+	printf("Enter the array elements");
+	for(i=0 ; i<n ; i++)
+	{
+		scanf("%d",&arr[i]);
+	}
+	for(i=0 ; i < k ; i++)
+	{
+		max = i;
+		for(j = i+1 ; j < n ; j++)
+		{
+			if (arr[j] > arr[max]) 
+      		{
+        		max = j;
+        		
+        	}
+        	
+        }
+        
+       
+        swap(&arr[i],&arr[max]);
+	}
+	printf("The %d largest elements are",k);
+	for(i=0 ; i<k ; i++)
+	{
+		printf("%d -> ",arr[i]);
+	}
+}
+		
+int main()
+{
+	clock_t start,end; 
+    start = clock(); 
+    modified_selection_sort(); 
+    end = clock(); 
+    double time_taken = ((double)(end - start))/CLOCKS_PER_SEC; 
   
-    printf("sort() took %f seconds to execute \n", time_taken); 
+    printf("selectionsort() took %f seconds to execute \n", time_taken); 
     return 0; 
-} 
-
-
-
-
-
-
-
+}
 
 
 
